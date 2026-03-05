@@ -7,6 +7,11 @@ cd "$ROOT_DIR"
 
 COMMIT_MSG="${1:-chore: deploy}"
 
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+# Mensagem de fluxo recomendado
+echo "Fluxo: trabalhar em branch de feature, abrir PR, merge na main e só então deploy na main." >&2
+
 # Garante entradas essenciais no .gitignore
 ensure_ignore() {
   local pattern="$1"
@@ -30,8 +35,13 @@ else
   exit 0
 fi
 
-# Push para main
-git push origin main
+# Push para a branch atual
+git push origin "$BRANCH"
 
-# Chama o deploy (usa deploy.sh existente)
-./deploy.sh
+# Só dispara deploy automático se estivermos na main
+if [[ "$BRANCH" == "main" ]]; then
+  echo "Na main: disparando deploy." >&2
+  ./deploy.sh
+else
+  echo "Branch $BRANCH pushada. Abra PR, faça merge na main e depois rode git-deploy.sh na main para disparar o deploy." >&2
+fi

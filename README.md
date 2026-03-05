@@ -21,3 +21,10 @@ Serviço FastAPI simples para dashboard e login mockado.
 
 - Garanta `RENDER_DEPLOY_HOOK` definido em `.env`.
 - Rode `./deploy.sh` (instala deps, checa sintaxe e chama o hook). O script imprime a URL dos docs via `DOCS_URL`.
+
+## Fluxo de Git recomendado
+
+1. Criar branch de feature: `git checkout -b feature/nome`
+2. Trabalhar e comitar: `./git-deploy.sh "mensagem"` (ele só faz push e não deploy se não estiver na main)
+3. Abrir PR e fazer merge na `main`
+4. Na `main`, rodar `./git-deploy.sh "mensagem"` para push + deploy (hook Render)
