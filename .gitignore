@@ -26,3 +26,4 @@ dashboard.db
 # OS
 .DS_Store
 Thumbs.db
+git-start-feature.sh

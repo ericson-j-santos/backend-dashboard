@@ -24,7 +24,7 @@ Serviço FastAPI simples para dashboard e login mockado.
 
 ## Fluxo de Git recomendado
 
-1. Criar branch de feature: `git checkout -b feature/nome`
-2. Trabalhar e comitar: `./git-deploy.sh "mensagem"` (ele só faz push e não deploy se não estiver na main)
+1. Criar branch de feature: `./git-start-feature.sh nome`
+2. Trabalhar e comitar: `./git-deploy.sh "mensagem"` (em feature branch ele só faz push, não deploy)
 3. Abrir PR e fazer merge na `main`
 4. Na `main`, rodar `./git-deploy.sh "mensagem"` para push + deploy (hook Render)
