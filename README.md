@@ -1,5 +1,23 @@
 # backend-dashboard
 
-Projeto backup automático.
+Serviço FastAPI simples para dashboard e login mockado.
 
-Criado em: 20260303_183002
+## Pré-requisitos
+
+- Python 3.12+
+- (Opcional) hook de deploy do Render
+
+## Setup
+
+1. `python3 -m venv venv && source venv/bin/activate`
+2. `pip install -r requirements.txt`
+3. `cp .env.example .env` e preencha `RENDER_DEPLOY_HOOK` (URL do deploy hook do Render). `DOCS_URL` já vem definido.
+
+## Executar local
+
+- `./run.sh` (cria/ativa venv, instala deps se faltarem e escolhe porta livre a partir de 8000)
+
+## Deploy (Render via hook)
+
+- Garanta `RENDER_DEPLOY_HOOK` definido em `.env`.
+- Rode `./deploy.sh` (instala deps, checa sintaxe e chama o hook). O script imprime a URL dos docs via `DOCS_URL`.
