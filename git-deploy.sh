@@ -7,6 +7,17 @@ cd "$ROOT_DIR"
 
 COMMIT_MSG="${1:-chore: deploy}"
 
+# Garante entradas essenciais no .gitignore
+ensure_ignore() {
+  local pattern="$1"
+  grep -qx "$pattern" .gitignore || echo "$pattern" >> .gitignore
+}
+
+ensure_ignore ".env"
+ensure_ignore ".env.local"
+ensure_ignore "*.db"
+ensure_ignore "dashboard.db"
+
 # Status para referência
 git status -sb
 
@@ -15,7 +26,8 @@ git add .
 if git commit -m "$COMMIT_MSG"; then
   echo "Commit criado: $COMMIT_MSG"
 else
-  echo "Nada para commitar" >&2
+  echo "Nada para commitar; abortando push/deploy." >&2
+  exit 0
 fi
 
 # Push para main
