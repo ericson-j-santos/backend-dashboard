@@ -43,5 +43,7 @@ if [[ "$BRANCH" == "main" ]]; then
   echo "Na main: disparando deploy." >&2
   ./deploy.sh
 else
-  echo "Branch $BRANCH pushada. Abra PR, faça merge na main e depois rode git-deploy.sh na main para disparar o deploy." >&2
+  echo "Branch $BRANCH pushada." >&2
+  echo "Abra PR: https://github.com/ericson-j-santos/backend-dashboard/compare/main...$BRANCH" >&2
+  echo "Depois do merge na main, rode git-deploy.sh na main para disparar o deploy." >&2
 fi
