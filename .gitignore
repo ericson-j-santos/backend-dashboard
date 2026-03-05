@@ -27,3 +27,4 @@ dashboard.db
 .DS_Store
 Thumbs.db
 git-start-feature.sh
+git-post-merge-deploy.sh
