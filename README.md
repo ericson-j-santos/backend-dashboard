@@ -24,7 +24,13 @@ Serviço FastAPI simples para dashboard e login mockado.
 
 ## Fluxo de Git recomendado
 
-1. Criar branch de feature: `git checkout -b feature/nome`
-2. Trabalhar e comitar: `./git-deploy.sh "mensagem"` (ele só faz push e não deploy se não estiver na main)
+1. Criar branch de feature: `./git-start-feature.sh nome`
+2. Trabalhar e comitar: `./git-deploy.sh "mensagem"` (em feature branch ele só faz push, mostra o link do PR e não deploy)
 3. Abrir PR e fazer merge na `main`
-4. Na `main`, rodar `./git-deploy.sh "mensagem"` para push + deploy (hook Render)
+4. Na `main`, rodar `./git-post-merge-deploy.sh "mensagem"` para atualizar a main e disparar push + deploy (hook Render)
+
+### Criar PR via script
+
+- Defina `GH_TOKEN` em `.env` (local, não versionado) ou exporte: `export GH_TOKEN=seu_token`
+- `./create-pr.sh "Titulo" "Corpo opcional" [--merge]`
+- Na feature branch: cria PR para `main`. Com `--merge`, tenta mesclar automaticamente após criar (requer permissões no token).

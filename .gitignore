@@ -26,3 +26,6 @@ dashboard.db
 # OS
 .DS_Store
 Thumbs.db
+git-start-feature.sh
+git-post-merge-deploy.sh
+create-pr.sh
