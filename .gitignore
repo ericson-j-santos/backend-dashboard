@@ -28,3 +28,4 @@ dashboard.db
 Thumbs.db
 git-start-feature.sh
 git-post-merge-deploy.sh
+create-pr.sh

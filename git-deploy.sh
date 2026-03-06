@@ -5,6 +5,19 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$ROOT_DIR"
 
+# Carrega .env local e ~/.env, se existirem
+load_env_if_exists() {
+  local file="$1"
+  if [[ -f "$file" ]]; then
+    set -a
+    source "$file"
+    set +a
+  fi
+}
+
+load_env_if_exists .env
+load_env_if_exists "$HOME/.env"
+
 COMMIT_MSG="${1:-chore: deploy}"
 
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
